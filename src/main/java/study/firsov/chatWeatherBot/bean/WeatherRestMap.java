@@ -31,7 +31,6 @@ public class WeatherRestMap {
     public WeatherNow getNowWeather(String city) {
         try {
             Logger logger = LoggerFactory.getLogger(WeatherRestMap.class);
-            logger.warn("not cached");
             return restTemplate.getForObject(
                     botConfigService.getNowApiTemp().replace("{city}", city),
                     WeatherNow.class);

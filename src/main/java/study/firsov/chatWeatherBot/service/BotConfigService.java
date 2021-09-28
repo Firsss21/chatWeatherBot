@@ -1,6 +1,7 @@
 package study.firsov.chatWeatherBot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import study.firsov.chatWeatherBot.command.Command;
 import study.firsov.chatWeatherBot.repository.BotConfigRepo;
@@ -12,23 +13,31 @@ public class BotConfigService {
     @Autowired
     BotConfigRepo botConfigRepo;
 
+    @Value("#{${bot.telegramCallbackAnswer}}")
+    private String tgApi;
+
+    @Value("#{${bot.weatherApi}}")
+    private String nowApi;
+
+    @Value("#{${bot.accessToken}}")
+    private String tgAccessToken;
+
+    @Value("#{${bot.name}}")
+    private String username;
+
     public String getTelegramCallbackAnswerTemp() {
-        return this.botConfigRepo.findAll().get(0).getTelegramCallbackAnswerTemp();
+        return tgApi;
     }
 
     public String getNowApiTemp() {
-        return this.botConfigRepo.findAll().get(0).getNowWeatherApiTemp();
-    }
-
-    public List<Command> getAllCommands() {
-        return botConfigRepo.findAll().get(0).getCommands();
+        return nowApi;
     }
 
     public String getBotUsername() {
-        return botConfigRepo.findAll().get(0).getName();
+        return username;
     }
 
     public String getBotAccessToken() {
-        return botConfigRepo.findAll().get(0).getAccessToken();
+        return tgAccessToken;
     }
 }

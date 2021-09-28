@@ -24,10 +24,7 @@ public class MessageGenerator {
     public String generateHelpMessage() {
         message = "";
         message = ":sunny: Вот мои доступные команды :sunny:\n\n";
-//        botConfigService.getAllCommands()
-//                .forEach(command -> {
-//                    message = message + command.getName() + " - " + command.getDescription() + "\n";
-//                });
+
         for (MainCommand value : MainCommand.values()) {
             message = message + value.getDescription() + "\n";
         }
